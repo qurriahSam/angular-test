@@ -14,6 +14,7 @@ export class RoomsComponent implements OnInit {
   rooms: Rooms = {
     availableRooms: 10,
     bookedRooms: 3,
+    totalRooms: 13,
   };
   roomTypes: RoomDetails[] = [];
   selectedRoom!: RoomDetails;
@@ -33,13 +34,16 @@ export class RoomsComponent implements OnInit {
   }
 
   addRoom() {
-    let newRoom = {
-      roomType: 'executive room',
-      amenities: 'air conditioner, bathtub, wifi, kitchen',
-      price: 5000,
-      photo: 'file:///home/qurriahx/Pictures/Wallpapers/kitchen2.jpg',
-      checkIn: new Date(),
-      checkOut: new Date(),
+    let newRoom: RoomDetails = {
+      roomNumber: '2',
+      roomType: 'Deluxe Room',
+      amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+      price: 1000,
+      photos:
+        'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+      checkinTime: Date(),
+      checkoutTime: Date(),
+      rating: 3.45654,
     };
     this.roomTypes = [...this.roomTypes, newRoom];
   }
