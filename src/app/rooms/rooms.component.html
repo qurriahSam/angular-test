@@ -1,0 +1,21 @@
+<p>welcome to {{ hotelName }}</p>
+<p [hidden]="hideRooms">
+  we have <span [innerText]="numberOfRooms"></span> rooms available
+</p>
+<button (click)="toggle()">hide rooms</button>
+
+<div *ngIf="rooms.availableRooms > 0" class="container">
+  <p>rooms available: {{ rooms.availableRooms }}</p>
+  <p>Booked rooms: {{ rooms.bookedRooms }}</p>
+
+  <hinv-room-list
+    [rooms]="roomTypes"
+    (selectedRoom)="showSelected($event)"
+  ></hinv-room-list>
+</div>
+
+<button (click)="addRoom()" class="btn btn-warning btn-sm">+</button>
+
+<div *ngIf="selectedRoom">
+  <p>{{ selectedRoom | json }}</p>
+</div>
