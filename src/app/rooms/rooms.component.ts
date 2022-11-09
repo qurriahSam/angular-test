@@ -26,7 +26,9 @@ export class RoomsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.roomTypes = this.roomsService.getRooms();
+    this.roomsService.getRooms().subscribe((roomlist) => {
+      this.roomTypes = roomlist;
+    });
   }
 
   showSelected(room: RoomDetails) {
@@ -35,7 +37,6 @@ export class RoomsComponent implements OnInit {
 
   addRoom() {
     let newRoom: RoomDetails = {
-      roomNumber: '2',
       roomType: 'Deluxe Room',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
       price: 1000,
@@ -45,6 +46,9 @@ export class RoomsComponent implements OnInit {
       checkoutTime: Date(),
       rating: 3.45654,
     };
-    this.roomTypes = [...this.roomTypes, newRoom];
+    // this.roomTypes = [...this.roomTypes, newRoom];
+    this.roomsService.addRooms(newRoom).subscribe((data) => {
+      this.roomTypes = data;
+    });
   }
 }

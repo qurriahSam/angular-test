@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RoomDetails } from '../rooms';
 
@@ -7,9 +7,13 @@ import { RoomDetails } from '../rooms';
 })
 export class RoomsService {
   roomTypes: RoomDetails[] = [];
-  constructor(private http: HttpClientModule) {}
+  constructor(private http: HttpClient) {}
 
   getRooms() {
-    return this.roomTypes;
+    return this.http.get<RoomDetails[]>('/api/rooms');
+  }
+
+  addRooms(room: RoomDetails) {
+    return this.http.post<RoomDetails[]>('/api/rooms', room);
   }
 }
