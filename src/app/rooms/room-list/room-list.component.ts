@@ -17,7 +17,7 @@ import { RoomDetails } from '../rooms';
 export class RoomListComponent implements OnInit, OnChanges {
   constructor() {}
 
-  @Input() rooms: RoomDetails[] = [];
+  @Input() rooms: RoomDetails[] | null = [];
   @Output() selectedRoom = new EventEmitter<RoomDetails>();
 
   ngOnInit(): void {}

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { shareReplay } from 'rxjs';
 import { RoomDetails } from '../rooms';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { RoomDetails } from '../rooms';
 })
 export class RoomsService {
   roomTypes: RoomDetails[] = [];
+  getRooms$ = this.http.get<RoomDetails[]>('/api/rooms').pipe(shareReplay(1));
   constructor(private http: HttpClient) {}
 
   getRooms() {
@@ -15,5 +17,9 @@ export class RoomsService {
 
   addRooms(room: RoomDetails) {
     return this.http.post<RoomDetails[]>('/api/rooms', room);
+  }
+
+  editRooms(room: RoomDetails) {
+    return this.http.patch<RoomDetails[]>('/api/rooms', room);
   }
 }

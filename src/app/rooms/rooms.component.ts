@@ -18,6 +18,7 @@ export class RoomsComponent implements OnInit {
   };
   roomTypes: RoomDetails[] = [];
   selectedRoom!: RoomDetails;
+  rooms$ = this.roomsService.getRooms$;
 
   constructor(private roomsService: RoomsService) {}
 
@@ -26,9 +27,9 @@ export class RoomsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.roomsService.getRooms().subscribe((roomlist) => {
+    /*     this.roomsService.getRooms$.subscribe((roomlist) => {
       this.roomTypes = roomlist;
-    });
+    }); */
   }
 
   showSelected(room: RoomDetails) {
@@ -48,6 +49,24 @@ export class RoomsComponent implements OnInit {
     };
     // this.roomTypes = [...this.roomTypes, newRoom];
     this.roomsService.addRooms(newRoom).subscribe((data) => {
+      this.roomTypes = data;
+    });
+  }
+
+  editRoom() {
+    let newRoom: RoomDetails = {
+      roomNumber: '3',
+      roomType: 'Deluxe Room',
+      amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+      price: 1000,
+      photos:
+        'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+      checkinTime: Date(),
+      checkoutTime: Date(),
+      rating: 3.45654,
+    };
+    // this.roomTypes = [...this.roomTypes, newRoom];
+    this.roomsService.editRooms(newRoom).subscribe((data) => {
       this.roomTypes = data;
     });
   }

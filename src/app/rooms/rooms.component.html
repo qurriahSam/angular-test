@@ -8,13 +8,16 @@
   <p>rooms available: {{ rooms.availableRooms }}</p>
   <p>Booked rooms: {{ rooms.bookedRooms }}</p>
 
-  <hinv-room-list
-    [rooms]="roomTypes"
-    (selectedRoom)="showSelected($event)"
-  ></hinv-room-list>
+  <div *ngIf="rooms$ | async as showRooms">
+    <hinv-room-list
+      [rooms]="showRooms"
+      (selectedRoom)="showSelected($event)"
+    ></hinv-room-list>
+  </div>
 </div>
 
 <button (click)="addRoom()" class="btn btn-warning btn-sm">+</button>
+<button (click)="editRoom()" class="btn btn-warning btn-sm">+</button>
 
 <div *ngIf="selectedRoom">
   <p>{{ selectedRoom | json }}</p>
