@@ -26,11 +26,7 @@ export class RoomsComponent implements OnInit {
     this.hideRooms = !this.hideRooms;
   }
 
-  ngOnInit(): void {
-    /*     this.roomsService.getRooms$.subscribe((roomlist) => {
-      this.roomTypes = roomlist;
-    }); */
-  }
+  ngOnInit(): void {}
 
   showSelected(room: RoomDetails) {
     this.selectedRoom = room;
