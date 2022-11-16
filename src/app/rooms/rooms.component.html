@@ -17,8 +17,15 @@
 </div>
 
 <button (click)="addRoom()" class="btn btn-warning btn-sm">+</button>
-<button (click)="editRoom()" class="btn btn-warning btn-sm">+</button>
+<br/>
+<button (click)="editRoom()" class="btn btn-warning btn-sm">Edit</button>
 
 <div *ngIf="selectedRoom">
   <p>{{ selectedRoom | json }}</p>
 </div>
+
+
+  <ul>
+    <li>{{roomsCount$ | async}}</li>
+  </ul>
+
