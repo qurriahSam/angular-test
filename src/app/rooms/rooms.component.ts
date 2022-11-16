@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { catchError, map } from 'rxjs';
 import { RoomDetails, Rooms } from './rooms';
 import { RoomsService } from './services/rooms.service';
 
@@ -18,8 +19,11 @@ export class RoomsComponent implements OnInit {
   };
   roomTypes: RoomDetails[] = [];
   selectedRoom!: RoomDetails;
-  rooms$ = this.roomsService.getRooms$;
+  rooms$ = this.roomsService.getRooms$
 
+  roomsCount$ = this.rooms$.pipe(
+    map((room) => room.length)
+  )
   constructor(private roomsService: RoomsService) {}
 
   toggle() {
