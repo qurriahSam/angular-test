@@ -17,8 +17,7 @@
 </div>
 
 <button (click)="addRoom()" class="btn btn-warning btn-sm">+</button>
-<br/>
-<button (click)="editRoom()" class="btn btn-primary btn-sm">Edit</button>
+<button (click)="editRoom()" class="btn btn-primary btn-sm ps-4">Edit</button>
 
 <div *ngIf="selectedRoom">
   <p>{{ selectedRoom | json }}</p>
